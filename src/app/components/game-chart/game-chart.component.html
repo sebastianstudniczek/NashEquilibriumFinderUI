@@ -1,0 +1,23 @@
+<div *ngIf="cleanStrategyPayouts && cleanStrategyPayouts.length > 0" class="container mat-elevation-z10 rounded p-4">
+  <div class="row" style="height: 500px">
+    <div class="col-8" echarts [options]="chartOptions"></div>
+    <div class="col-4" style="display: flex; justify-content: center; flex-direction: column;">
+      <h2 style="text-align: center;">Macierz wypłat</h2>
+      <table mat-table style="width: 100%;" [dataSource]="rows">
+        <ng-container matColumnDef=".">
+          <!-- Column for storing first player strategies -->
+          <th mat-header-cell class="custom-column" *matHeaderCellDef>.</th>
+          <td mat-cell class="custom-column" *matCellDef="let element">{{element.firstPlayerStrategy}}</td>
+        </ng-container>
+        <!-- Column per second player strategy -->
+        <ng-container *ngFor="let item of headers | slice:1;let j = index" [matColumnDef]="item.toString()">
+          <th mat-header-cell class="custom-column" *matHeaderCellDef>{{item}}</th>
+          <td mat-cell class="custom-column" *matCellDef="let element">{{element.payoffs[j][0]}}, {{element.payoffs[j][1]}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="headers"></tr>
+        <tr mat-row *matRowDef="let rowData; columns: headers"></tr>
+      </table>
+    </div>
+  </div>
+</div>

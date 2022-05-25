@@ -1,0 +1,38 @@
+<mat-toolbar color="primary" class="shadow">
+  <span>Nash Equilibrium Finder</span>
+</mat-toolbar>
+
+<br class="mb-5">
+
+<app-game-form (submitGame)="onGameSubmitted($event)"></app-game-form>
+
+<br class="mb-5">
+
+<app-game-chart
+  [cleanStrategyPayouts]="cleanStrategyPayouts"
+  [nashEquilibriumPayouts]="nashEquilibriumPayouts"
+  [correlatedEquilibriumPayouts]="correlatedEquilibriumPayouts"
+  [gameTitle]="title"
+  [paretoFront]="paretoFront"
+  [rows]="rows"
+  [headers]="headers">
+</app-game-chart>
+
+<br class="mb-5">
+
+<app-algorithm-result
+  algorithmName="Lemke-Howson (Równowaga Nasha)"
+  [firstPlayerStrategyProbs]="firstPlayerNEStrategyProbs"
+  [secondPlayerStrategyProbs]="secondPlayerNEStrategyProbs"
+  [calculationTime]="elapsedMilliseconds">
+</app-algorithm-result>
+
+<br class="mb-5">
+
+<app-algorithm-result
+  algorithmName="Simplex (Równowaga skorelowana)"
+  [firstPlayerStrategyProbs]="firstPlayerCEStrategyProbs"
+  [secondPlayerStrategyProbs]="secondPlayerCEStrategyProbs"
+  [calculationTime]="0">
+</app-algorithm-result>
+

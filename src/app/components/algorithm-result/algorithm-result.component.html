@@ -1,0 +1,25 @@
+<div *ngIf="firstPlayerStrategyProbs.length > 0" class="container container mat-elevation-z10 bg-white rounded p-4">
+  <h2>Algorytm {{algorithmName}}</h2>
+  <div>
+    <label>Rozkład prawdopodobieństwa strategii pierwszego gracza:</label>
+    <ol>
+      <li *ngFor="let strategy of firstPlayerStrategyProbs">
+        <div *ngIf="strategy.probability.n !== 0; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>{{strategy.strategyName}}: {{strategy.probability.toFraction()}}</ng-template>
+        <ng-template #elseBlock>: 0</ng-template>
+      </li>
+    </ol>
+  </div>
+  <hr>
+  <div>
+    <label>Rozkład prawdopodobieństwa strategii drugiego gracza:</label>
+    <ol>
+      <li *ngFor="let strategy of secondPlayerStrategyProbs">
+        <div *ngIf="strategy.probability.n !== 0; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>{{strategy.strategyName}}: {{strategy.probability.toFraction()}}</ng-template>
+        <ng-template #elseBlock>: 0</ng-template>
+      </li>
+    </ol>
+  </div>
+  <!-- <span>Czas obliczeń: {{calculationTime}} ms</span> -->
+</div>

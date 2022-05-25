@@ -1,0 +1,65 @@
+<div class="container mat-elevation-z10 rounded p-4 mt-5">
+  <form [formGroup]="matrixDimensionForm">
+    <div class="row mb-3">
+      <mat-form-field appearance="outline" class="col-md-3">
+        <mat-label>Liczba strategii pierwszego gracza</mat-label>
+        <input matInput
+          formControlName="rowsCount"
+          type="number">
+        <mat-error [textContent]="getValidationMessageFor('rowsCount', matrixDimensionForm)"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-3">
+        <mat-label>Liczba strategii drugiego gracza</mat-label>
+        <input matInput
+          formControlName="colsCount"
+          type="number">
+        <mat-error [textContent]="getValidationMessageFor('colsCount', matrixDimensionForm)"></mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-md">
+        <mat-label>Tytuł gry</mat-label>
+        <input matInput
+          formControlName="gameTitle"
+          type="text">
+        <mat-error [textContent]="getValidationMessageFor('gameTitle', gameForm)"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md">
+        <mat-label>Wypłaty pierwszego gracza</mat-label>
+        <textarea matInput
+          formControlName="firstPlayerPayouts"
+          type="text"
+          rows="5">
+        </textarea>
+        <mat-error [textContent]="getValidationMessageFor('firstPlayerPayouts', gameForm)"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md">
+        <mat-label>Wypłaty drugiego gracza</mat-label>
+        <textarea matInput
+          formControlName="secondPlayerPayouts"
+          type="text"
+          rows="5">
+        </textarea>
+        <mat-error [textContent]="getValidationMessageFor('secondPlayerPayouts', gameForm)"></mat-error>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary" type="submit">
+      Oblicz
+    </button>
+    &nbsp;
+    <button mat-raised-button color="warn" (click)="onClear()" type="reset">
+      Wyczyść formularz
+    </button>
+  </form>
+</div>
+
+
+
+
+
